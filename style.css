@@ -1,0 +1,373 @@
+@font-face {
+  font-family: "Zing";
+  src: url(./source/ofont.ru_Zing\ Rust.ttf);
+}
+body {
+  background-image: url(./source/backgroundmob.PNG);
+  /* background-repeat: no-repeat;
+  background-size: cover; */
+}
+.container {
+  width: 70%;
+  margin: auto;
+  text-align: center;
+}
+
+.dice {
+  text-align: center;
+  display: inline-block;
+  margin: 10px;
+}
+
+p {
+  font-size: 2rem;
+  color: black;
+}
+
+h1 {
+  color: black;
+}
+
+img {
+  width: 100%;
+}
+
+.bottom {
+  padding-top: 30px;
+}
+
+.butn {
+  background: #cc4e4e;
+  border-radius: 7px;
+  color: #ffff;
+  font-size: 30px;
+  padding: 16px 25px 16px 25px;
+  text-decoration: none;
+  cursor: pointer;
+  margin-top: 150px;
+  font-family: "Zing", sans-serif;
+}
+
+.choose-head {
+  text-align: center;
+}
+
+.butn:disabled {
+  background: #232931;
+}
+
+.root {
+  display: flex;
+  flex-direction: column;
+  font-family: "Zing", sans-serif;
+  background-color: #ffffff;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+}
+
+.dices {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+}
+
+.dice-container {
+  margin-top: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70%;
+}
+
+.dice-img {
+  position: relative;
+  object-fit: contain;
+  cursor: pointer;
+  width: 100%;
+}
+
+.dice-result {
+  position: absolute;
+  font-size: 96px;
+  color: white;
+}
+
+.blocked-dice {
+  opacity: 0.5;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.dice-active {
+  animation: rotation 40ms infinite linear;
+  -webkit-animation: rotation 40ms infinite linear;
+  -moz-animation: rotation 40ms infinite linear;
+  -ms-animation: rotation 40ms infinite linear;
+  -o-animation: rotation 40ms infinite linear;
+}
+
+.choose-dice {
+  z-index: 100;
+  display: flex;
+  width: 20%;
+  height: 20%;
+}
+.choice-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.choice-container:nth-child(2) {
+  margin-left: 20%;
+  margin-right: 5%;
+}
+
+.choice-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  cursor: pointer;
+}
+
+.game-alert {
+  font-size: 24px;
+  text-align: center;
+}
+
+.description-ability {
+  font-size: 14px;
+}
+
+.value-red {
+  color: red;
+}
+
+.dice-red {
+  color: red;
+  width: 95px;
+  height: 95px;
+  background: url(./source/angrys.svg) no-repeat center center;
+  background-size: contain;
+  background-position: 3px;
+}
+
+.dice-green {
+  width: 95px;
+  height: 95px;
+  background: url(./source/PurpleDice.svg) no-repeat center center;
+  background-size: contain;
+}
+
+.choise-container {
+  position: absolute;
+  left: -60px;
+  top: -160px;
+  gap: 160px;
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+}
+
+.choice-name {
+  margin: 5px 0;
+}
+
+.mechanic {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.attack {
+  grid-column-start: 1;
+  grid-row-start: 2;
+  grid-column-end: 1;
+  grid-row-end: 2;
+  cursor: pointer;
+}
+.defense {
+  grid-column-start: 3;
+  grid-row-start: 2;
+  grid-column-end: 3;
+  grid-row-end: 2;
+  cursor: pointer;
+}
+.heal {
+  grid-column-start: 2;
+  grid-row-start: 3;
+  grid-column-end: 2;
+  grid-row-end: 3;
+  cursor: pointer;
+}
+.mechanics-img {
+  width: 100px;
+}
+
+.mechanics {
+  text-align: center;
+}
+
+.plus-container {
+  animation: Up 2s ease infinite;
+  position: absolute;
+  top: 50px;
+  left: 28%;
+  z-index: 10;
+}
+
+.plus {
+  background-image: url(./source/plus-mini-1523-svgrepo-com.svg);
+  background-size: contain;
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  fill: red;
+}
+@keyframes Up {
+  0% {
+    top: 150px;
+  }
+  100% {
+    top: 50px;
+  }
+}
+
+.heal-invis {
+  display: none !important;
+}
+
+.heal-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 11;
+}
+.heal-btn {
+  font-size: 14px;
+  padding: 5px 20px;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+canvas {
+  background-color: white;
+  border: 1px black solid;
+  border-radius: 18px;
+}
+
+.pen {
+  position: absolute;
+  top: 10%;
+  right: 60%;
+  z-index: 100;
+}
+.circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid black;
+  cursor: pointer;
+}
+.line {
+  width: 40px;
+  border: 2px solid black;
+  transform: rotate(120deg);
+  position: relative;
+  top: 13px;
+  right: 16px;
+}
+.timer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0;
+  border-radius: 13px;
+  background-color: black;
+  color: white;
+  font-size: 86px;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none;
+}
+.paint-container {
+  display: flex;
+  flex-direction: column;
+}
+
+#D30 > .dice-result {
+  font-size: 56px !important;
+}
+#D5 > .dice-result {
+  /* margin: 40px 8px 0 0 !important; */
+  font-size: 56px !important;
+}
+
+@media screen and (max-width: 990px) {
+  .choose-dice {
+    width: 50%;
+    height: 50%;
+  }
+  .choise-container {
+    gap: 70px;
+    row-gap: 35px;
+    left: 0;
+    max-width: 400px;
+    top: -80px;
+  }
+  .mechanics-img {
+    width: 100%;
+  }
+  .dice-container {
+    margin-top: 50px;
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .choose-dice {
+    width: 90%;
+  }
+  .choose-head {
+    font-size: 0.9em;
+  }
+  .dice-result {
+    font-size: 70px;
+  }
+  .heal {
+    width: 85%;
+  }
+  .choise-container {
+    top: -41px;
+  }
+  .mechanics-img {
+    width: 80%;
+  }
+  .choice-name {
+    font-size: 22px;
+  }
+  .timer {
+    font-size: 56px;
+  }
+  #D5 > .dice-result {
+    /* margin: 30px 8px 0 0 !important; */
+  }
+}
