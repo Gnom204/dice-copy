@@ -67,9 +67,9 @@ export default class Paint {
         this.x =
           e.touches[0].pageX -
           this.canvas.parentNode.parentNode.offsetLeft -
-          10;
+          20;
         this.y =
-          e.touches[0].pageY - this.canvas.parentNode.parentNode.offsetTop - 20;
+          e.touches[0].pageY - this.canvas.parentNode.parentNode.offsetTop - 40;
       } else {
         this.x = e.clientX - this.canvas.parentNode.parentNode.offsetLeft;
         this.y = e.clientY - this.canvas.parentNode.parentNode.offsetTop;
