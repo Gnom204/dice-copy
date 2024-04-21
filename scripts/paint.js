@@ -67,7 +67,7 @@ export default class Paint {
         this.x =
           e.touches[0].pageX -
           this.canvas.parentNode.parentNode.offsetLeft -
-          40;
+          30;
         this.y =
           e.touches[0].pageY - this.canvas.parentNode.parentNode.offsetTop - 80;
       } else {
@@ -75,7 +75,6 @@ export default class Paint {
         this.y = e.clientY - this.canvas.parentNode.parentNode.offsetTop;
       }
       this.isDraw = true;
-      this._getInfo();
 
       this.ctx.lineTo(this.x, this.y);
       this.ctx.stroke();
@@ -102,7 +101,6 @@ export default class Paint {
         this.lastTime = false;
       }, this.time);
     }
-    this._getInfo();
 
     this.drawing = true;
   }
@@ -127,7 +125,7 @@ export default class Paint {
     }, 1); // Проверяем каждую миллисекунду
   }
   _getRandomTime(items) {
-    this.time = items[Math.floor(Math.random() * items.length)];
+    this.time = 5000;
   }
   _reset() {
     this._getRandomTime(this.times);
@@ -168,8 +166,32 @@ export default class Paint {
     this._getInfo();
   }
   _setLineWidth() {
+    this.lineWid = this._getRundNum(1, 5);
     this.lineInterval = setInterval(() => {
-      this.lineWid = this._getRundNum(1, 5);
+      let casheValue = this.lineWid;
+      let newValue = this._getRundNum(1, 5);
+      console.log({ casheValue, newValue, line: this.lineWid });
+      let upperInterval, downInterval;
+      if (casheValue > newValue) {
+        upperInterval = setInterval(() => {
+          console.log("cashe больше линии");
+          this.lineWid -= 0.1;
+          console.log(this.lineWid, casheValue);
+          if (this.lineWid <= newValue) {
+            clearInterval(upperInterval);
+          }
+        }, 1);
+      }
+      if (casheValue < newValue) {
+        downInterval = setInterval(() => {
+          console.log("cashe меньше линии");
+          this.lineWid += 0.1;
+          console.log(this.lineWid, casheValue);
+          if (this.lineWid >= newValue) {
+            clearInterval(downInterval);
+          }
+        }, 1);
+      }
     }, 300);
   }
   _getInfo() {
