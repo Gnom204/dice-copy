@@ -65,9 +65,11 @@ export default class Paint {
     } else {
       if (this.isMobile) {
         this.x =
-          e.touches[0].clientX - this.canvas.parentNode.parentNode.offsetLeft;
+          e.touches[0].pageX -
+          this.canvas.parentNode.parentNode.offsetLeft -
+          10;
         this.y =
-          e.touches[0].clientY - this.canvas.parentNode.parentNode.offsetTop;
+          e.touches[0].pageY - this.canvas.parentNode.parentNode.offsetTop - 20;
       } else {
         this.x = e.clientX - this.canvas.parentNode.parentNode.offsetLeft;
         this.y = e.clientY - this.canvas.parentNode.parentNode.offsetTop;
@@ -158,16 +160,8 @@ export default class Paint {
       this.second.textContent = "00";
       this.milSecond.textContent = "00";
       this.drawing = false;
-      this.ctx.fillStyle = "red";
+      this.ctx.fillStyle = "#d461618b";
       this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-      setTimeout(() => {
-        this.ctx.fillStyle = "white";
-        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-      }, 500);
-      setTimeout(() => {
-        this.ctx.fillStyle = "red";
-        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-      }, 500);
     }
     clearInterval(this.lineInterval);
     this.ctx.beginPath();
