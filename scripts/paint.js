@@ -48,6 +48,7 @@ export default class Paint {
     this.canvas.addEventListener("touchmove", (e) => this._draw(e));
     this.canvas.addEventListener("touchend", (e) => this._stopDrawing(e));
     document.addEventListener("mouseup", (e) => {
+      e.stopPropagation;
       if (this.isDraw) {
         this._stopDrawing(e);
       }
