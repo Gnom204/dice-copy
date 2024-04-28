@@ -328,7 +328,7 @@ canvas {
 
 .reset {
   border-radius: 8px;
-  border: 1px solid black;
+  border: none;
   width: 120px;
   height: 45px;
   font-size: 18px;
