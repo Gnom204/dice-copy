@@ -26,11 +26,10 @@ export class DiceD6 extends Dice {
     super._rollDice(result, container);
     this.getResult();
     result.classList.remove("dice-green");
+    result.classList.remove("dice-red");
     console.log(this.result);
     if (this.result === "—") {
       console.log("тире выпало");
-
-      console.log(result);
       setTimeout(() => {
         result.textContent = "";
         result.classList.add("dice-red");

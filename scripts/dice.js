@@ -37,21 +37,30 @@ class Dice {
   _rollDice(result, container) {
     if (this.cooldown) {
       this.cooldown = false;
-      container.classList.add("dice-active");
       result.textContent = "";
+      result.classList.remove("odd-number");
+      container.classList.add("dice-active");
       result.classList.remove("dice-red");
       result.classList.remove("dice-green");
       let randomNum = this._getRandomNum(1, this.diceValue.length + 1);
       let resValue = this.diceValue[randomNum - 1];
       this.result = resValue;
+      if (container.id === "D30") {
+        if (+this.result % 2 !== 0) {
+          result.classList.add("odd-number");
+        }
+      }
       this.getResult();
       setTimeout(() => {
         container.classList.remove("dice-active");
         result.textContent = resValue;
+        console.log(this.cooldown);
         setTimeout(() => {
           this.cooldown = true;
         }, 200);
+        console.log(this.cooldown);
       }, 500);
+      console.log(this.cooldown);
     }
   }
 

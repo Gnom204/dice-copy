@@ -107,6 +107,10 @@ img {
   }
 }
 
+.odd-number {
+  color: red;
+}
+
 .dice-active {
   animation: rotation 40ms infinite linear;
   -webkit-animation: rotation 40ms infinite linear;
@@ -316,7 +320,7 @@ canvas {
 
 .style-container {
   position: relative;
-  top: -20px;
+  top: -25px;
   display: flex;
   justify-content: center;
   margin: 5px 0;
@@ -328,6 +332,9 @@ canvas {
   width: 120px;
   height: 45px;
   font-size: 18px;
+  background-color: white;
+  cursor: pointer;
+  user-select: none;
 }
 
 #D30 > .dice-result {

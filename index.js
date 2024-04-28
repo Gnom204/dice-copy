@@ -115,6 +115,7 @@ function postDice(e) {
     place.firstElementChild.remove();
     gameAlert.textContent = "";
     diceD6.renderDice();
+    needImg.classList.add("blocked-dice");
   } else if (id === "D6" && place.firstElementChild.id === "D5") {
     gameAlert.textContent = "";
     place.firstElementChild.remove();
@@ -148,6 +149,7 @@ function postDice(e) {
     gameAlert.textContent = "";
     place.firstElementChild.remove();
     place.firstElementChild.remove();
+    needImg.classList.add("blocked-dice");
     paint.again();
     paint.renderPaint();
   } else if (id === "Papper" && place.firstElementChild.id != "Papper") {
