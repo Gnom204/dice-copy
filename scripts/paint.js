@@ -57,7 +57,7 @@ export default class Paint {
   }
   renderPaint() {
     this.paint = this._createPaint();
-    this.container.insertAdjacentElement("afterbegin", this.canvas);
+    this.timer.insertAdjacentElement("afterend", this.canvas);
     this.place.appendChild(this.paint);
   }
   _draw(e) {
@@ -76,11 +76,10 @@ export default class Paint {
         this.y =
           e.touches[0].pageY - this.canvas.parentNode.parentNode.offsetTop - 80;
       } else {
-        this.x = e.clientX - this.canvas.parentNode.parentNode.offsetLeft;
-        this.y = e.clientY - this.canvas.parentNode.parentNode.offsetTop;
+        this.x = e.pageX - this.canvas.parentNode.parentNode.offsetLeft;
+        this.y = e.pageY - this.canvas.parentNode.parentNode.offsetTop - 98;
       }
       this.isDraw = true;
-
       this.ctx.lineTo(this.x, this.y);
       this.ctx.stroke();
       this.ctx.beginPath();

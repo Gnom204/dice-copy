@@ -298,8 +298,8 @@ canvas {
   justify-content: center;
   margin: 10px 0;
   border-radius: 13px;
-  background-color: black;
-  color: white;
+  color: black;
+  margin: 0;
   font-size: 86px;
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */
@@ -315,47 +315,18 @@ canvas {
 }
 
 .style-container {
+  position: relative;
+  top: -20px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   margin: 5px 0;
-}
-
-.brush-container {
-  display: flex;
-  gap: 10px;
-}
-
-.brush {
-  background-size: contain;
-  background-repeat: no-repeat;
-  border-radius: 50%;
-  border: 1px black solid;
-  width: 45px;
-  height: 45px;
-  box-shadow: inset 1px 1px 3px black;
-  cursor: pointer;
-  background-size: 40px;
-  background-position: center;
-}
-
-.brush:hover {
-  box-shadow: 1px 1px 3px black;
-  transition: 3s;
-}
-
-.line-brush {
-  background-image: url(./source/attack.svg);
-}
-
-.curve-brush {
-  background-image: url(./source/shield.svg);
-  background-size: 35px;
 }
 
 .reset {
   border-radius: 8px;
   border: 1px solid black;
   width: 120px;
+  height: 45px;
   font-size: 18px;
 }
 
