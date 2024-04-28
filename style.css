@@ -320,7 +320,7 @@ canvas {
 
 .style-container {
   position: relative;
-  top: -25px;
+  top: -17px;
   display: flex;
   justify-content: center;
   margin: 5px 0;
@@ -329,12 +329,11 @@ canvas {
 .reset {
   border-radius: 8px;
   border: none;
-  width: 120px;
-  height: 45px;
   font-size: 18px;
   background-color: white;
   cursor: pointer;
   user-select: none;
+  color: black;
 }
 
 #D30 > .dice-result {
