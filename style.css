@@ -91,7 +91,7 @@ img {
 .dice-result {
   position: absolute;
   font-size: 96px;
-  color: white;
+  color: black;
 }
 
 .blocked-dice {
