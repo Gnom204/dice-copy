@@ -11,7 +11,7 @@ const healContainer = document.querySelector("#heal-con");
 const healText = document.querySelector(".heal-text");
 
 const diceD6Url = "./source/cub.svg";
-const diceD30Url = "./source/d30withoutGrane.png";
+const diceD30Url = "./source/D30.svg";
 const diceD5Url = "./source/diced5.png";
 
 const template = document.querySelector("#template");
@@ -74,7 +74,7 @@ let diceCount = [
     name: "D6",
   },
   {
-    src: "./source/d30withoutGrane.png",
+    src: "./source/D30.svg",
     name: "D30",
   },
 ];
