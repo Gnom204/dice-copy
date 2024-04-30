@@ -133,11 +133,9 @@ export default class Paint {
     this.timerInterval = setInterval(() => {
       let remainingTime = endTime - Date.now();
       if (remainingTime <= 0) {
-        clearInterval(
-          this.timerInterval,
-          this.lineInterval,
-          this.gradientInterval
-        );
+        clearInterval(this.timerInterval);
+        clearInterval(this.lineInterval);
+        clearInterval(this.gradientInterval);
         this.second.textContent = "00";
         this.milSecond.textContent = "00";
         this.drawing = false;
@@ -164,13 +162,10 @@ export default class Paint {
     this.isDraw = false;
     this.drawing = false;
 
+    clearInterval(this.upperInterval, this.downInterval);
     clearInterval(this.timerInterval);
-    clearInterval(
-      this.upperInterval,
-      this.downInterval,
-      this.lineInterval,
-      this.gradientInterval
-    );
+    clearInterval(this.lineInterval);
+    clearInterval(this.gradientInterval);
     clearTimeout(this.timerset);
     this.second.textContent = `0${futseconds}`;
     this.milSecond.textContent = futmilliseconds;
