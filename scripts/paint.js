@@ -10,6 +10,8 @@ export default class Paint {
     this.times = [500, 1000, 1500, 2000, 2500, 3000];
     this.lineWid;
     this.lineInterval;
+    this.downInterval;
+    this.upperInterval;
   }
   _createPaint() {
     let width = window.innerWidth;
@@ -79,6 +81,7 @@ export default class Paint {
         this.x = e.pageX - this.canvas.parentNode.parentNode.offsetLeft;
         this.y = e.pageY - this.canvas.parentNode.parentNode.offsetTop - 98;
       }
+      this._setLineWidth(e);
       console.log({ x: e.movementX, y: e.movementY });
       this.isDraw = true;
       this.ctx.lineTo(this.x, this.y);
@@ -89,7 +92,6 @@ export default class Paint {
     }
   }
   _startDrawing(e) {
-    this._setLineWidth();
     if (this.isMobile) {
       this.x =
         e.touches[0].clientX - this.canvas.parentNode.parentNode.offsetLeft;
@@ -99,7 +101,7 @@ export default class Paint {
       this.x = e.clientX - this.canvas.parentNode.parentNode.offsetLeft;
       this.y = e.clientY - this.canvas.parentNode.parentNode.offsetTop;
     }
-
+    this.lineWid = 1;
     if (!this.isDraw) {
       this._countdownTimer(this.time);
       this.timerset = setTimeout(() => {
@@ -117,7 +119,7 @@ export default class Paint {
     this.timerInterval = setInterval(() => {
       let remainingTime = endTime - Date.now();
       if (remainingTime <= 0) {
-        clearInterval(this.timerInterval);
+        clearInterval(this.timerInterval, this.lineInterval);
         this.second.textContent = "00";
         this.milSecond.textContent = "00";
         this.drawing = false;
@@ -145,6 +147,7 @@ export default class Paint {
     this.drawing = false;
 
     clearInterval(this.timerInterval);
+    clearInterval(this.upperInterval, this.downInterval, this.lineInterval);
     clearTimeout(this.timerset);
     this.second.textContent = `0${futseconds}`;
     this.milSecond.textContent = futmilliseconds;
@@ -160,44 +163,43 @@ export default class Paint {
     if (this.lastTime) {
       this.lastTime = false;
       clearInterval(this.timerInterval);
+      clearInterval(this.lineInterval);
       this.second.textContent = "00";
       this.milSecond.textContent = "00";
       this.drawing = false;
       this.ctx.fillStyle = "#d461618b";
       this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
     }
-    clearInterval(this.lineInterval);
     this.ctx.beginPath();
     this._getInfo();
   }
-  _setLineWidth() {
-    this.lineWid = this._getRundNum(1, 5);
-    this.lineInterval = setInterval(() => {
-      let casheValue = this.lineWid;
-      let newValue = this._getRundNum(1, 5);
-      console.log({ casheValue, newValue, line: this.lineWid });
-      let upperInterval, downInterval;
-      if (casheValue > newValue) {
-        upperInterval = setInterval(() => {
-          console.log("cashe больше линии");
-          this.lineWid -= 0.1;
-          console.log(this.lineWid, casheValue);
-          if (this.lineWid <= newValue) {
-            clearInterval(upperInterval);
-          }
-        }, 1);
+  _setLineWidth(e) {
+    let { movementX, movementY } = e;
+    if (movementX > 8 || movementY > 8 || movementX < -8 || movementY < -8) {
+      // if (this.lineWid < 5) {
+      //   this.lineWid += 0.5;
+      // }
+      // console.log("cashe больше линии");
+      if (this.lineWid < 5) {
+        this.lineWid += 0.3;
       }
-      if (casheValue < newValue) {
-        downInterval = setInterval(() => {
-          console.log("cashe меньше линии");
-          this.lineWid += 0.1;
-          console.log(this.lineWid, casheValue);
-          if (this.lineWid >= newValue) {
-            clearInterval(downInterval);
-          }
-        }, 1);
+      // this.upperInterval = setInterval(() => {
+      //   if (this.lineWid < 5) {
+      //     this.lineWid += 1;
+      //   } else if (this.lineWid > 1) {
+      //     this.lineWid -= 1;
+      //   } else {
+      //     clearInterval();
+      //   }
+      // }, 200);
+    } else {
+      if (this.lineWid > 1) {
+        this.lineWid -= 0.3;
       }
-    }, 300);
+      // if (this.lineWid > 1) {
+      //   this.lineWid -= 0.5;
+      // }
+    }
   }
   _getInfo() {
     console.log({
