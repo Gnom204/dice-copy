@@ -79,6 +79,7 @@ export default class Paint {
         this.x = e.pageX - this.canvas.parentNode.parentNode.offsetLeft;
         this.y = e.pageY - this.canvas.parentNode.parentNode.offsetTop - 98;
       }
+      console.log({ x: e.movementX, y: e.movementY });
       this.isDraw = true;
       this.ctx.lineTo(this.x, this.y);
       this.ctx.stroke();
