@@ -76,9 +76,11 @@ export default class Paint {
         this.x =
           e.touches[0].pageX -
           this.canvas.parentNode.parentNode.offsetLeft -
-          30;
+          40;
         this.y =
-          e.touches[0].pageY - this.canvas.parentNode.parentNode.offsetTop - 80;
+          e.touches[0].pageY -
+          this.canvas.parentNode.parentNode.offsetTop -
+          105;
       } else {
         this.x = e.pageX - this.canvas.parentNode.parentNode.offsetLeft;
         this.y = e.pageY - this.canvas.parentNode.parentNode.offsetTop - 98;
@@ -91,9 +93,8 @@ export default class Paint {
        * Настройка кисти
        */
       this.ctx.lineCap = "round";
-      this.ctx.strokeStyle = this.color;
+      this.ctx.strokeStyle = "#F07115";
       this.ctx.lineTo(this.x, this.y);
-      this.ctx.strokeStyle = this.gradient[this.index];
       this.ctx.stroke();
       this.ctx.beginPath();
       this.ctx.lineWidth = this.lineWid;
@@ -111,10 +112,8 @@ export default class Paint {
       this.y = e.clientY - this.canvas.parentNode.parentNode.offsetTop;
     }
     if (this.lastTime) {
-      clearInterval(this.gradientInterval);
       this.lineWid = 1;
       this.index = 0;
-      this._getGradient();
     }
     if (!this.isDraw) {
       this._countdownTimer(this.time);
@@ -135,7 +134,6 @@ export default class Paint {
       if (remainingTime <= 0) {
         clearInterval(this.timerInterval);
         clearInterval(this.lineInterval);
-        clearInterval(this.gradientInterval);
         this.second.textContent = "00";
         this.milSecond.textContent = "00";
         this.drawing = false;
@@ -165,7 +163,6 @@ export default class Paint {
     clearInterval(this.upperInterval, this.downInterval);
     clearInterval(this.timerInterval);
     clearInterval(this.lineInterval);
-    clearInterval(this.gradientInterval);
     clearTimeout(this.timerset);
     this.second.textContent = `0${futseconds}`;
     this.milSecond.textContent = futmilliseconds;
@@ -181,7 +178,6 @@ export default class Paint {
     if (this.lastTime) {
       this.lastTime = false;
       clearInterval(this.timerInterval);
-      clearInterval(this.gradientInterval);
       clearInterval(this.lineInterval);
       this.second.textContent = "00";
       this.milSecond.textContent = "00";
