@@ -12,6 +12,7 @@ export default class Paint {
     this.lineInterval;
     this.downInterval;
     this.upperInterval;
+    this.previousTouch;
   }
   _createPaint() {
     let width = window.innerWidth;
@@ -174,13 +175,22 @@ export default class Paint {
     this._getInfo();
   }
   _setLineWidth(e) {
+    if (this.isMobile) {
+      let touch = e.touches[0];
+      if (this.previousTouch) {
+        e.movementX = touch.pageX - this.previousTouch.pageX;
+        e.movementY = touch.pageY - this.previousTouch.pageY;
+      }
+      this.previousTouch = touch;
+    }
     let { movementX, movementY } = e;
+
     if (movementX > 8 || movementY > 8 || movementX < -8 || movementY < -8) {
       // if (this.lineWid < 5) {
       //   this.lineWid += 0.5;
       // }
       // console.log("cashe больше линии");
-      if (this.lineWid < 5) {
+      if (this.lineWid < 3.5) {
         this.lineWid += 0.3;
       }
       // this.upperInterval = setInterval(() => {
