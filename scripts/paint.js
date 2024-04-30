@@ -13,6 +13,7 @@ export default class Paint {
     this.downInterval;
     this.upperInterval;
     this.previousTouch;
+    this.gradient = ["#FAF001", "#E7DE0F", "#F01515", "#F07115"];
   }
   _createPaint() {
     let width = window.innerWidth;
@@ -85,7 +86,14 @@ export default class Paint {
       this._setLineWidth(e);
       console.log({ x: e.movementX, y: e.movementY });
       this.isDraw = true;
+      /**
+       * Когда-нибудь я научусь документировать код, а пока импровизация
+       * Настройка кисти
+       */
+      this.ctx.lineCap = "round";
+      this.ctx.strokeStyle = this.color;
       this.ctx.lineTo(this.x, this.y);
+      this.ctx.strokeStyle = this.gradient[this.index];
       this.ctx.stroke();
       this.ctx.beginPath();
       this.ctx.lineWidth = this.lineWid;
@@ -102,7 +110,12 @@ export default class Paint {
       this.x = e.clientX - this.canvas.parentNode.parentNode.offsetLeft;
       this.y = e.clientY - this.canvas.parentNode.parentNode.offsetTop;
     }
-    this.lineWid = 1;
+    if (this.lastTime) {
+      clearInterval(this.gradientInterval);
+      this.lineWid = 1;
+      this.index = 0;
+      this._getGradient();
+    }
     if (!this.isDraw) {
       this._countdownTimer(this.time);
       this.timerset = setTimeout(() => {
@@ -120,7 +133,11 @@ export default class Paint {
     this.timerInterval = setInterval(() => {
       let remainingTime = endTime - Date.now();
       if (remainingTime <= 0) {
-        clearInterval(this.timerInterval, this.lineInterval);
+        clearInterval(
+          this.timerInterval,
+          this.lineInterval,
+          this.gradientInterval
+        );
         this.second.textContent = "00";
         this.milSecond.textContent = "00";
         this.drawing = false;
@@ -148,7 +165,12 @@ export default class Paint {
     this.drawing = false;
 
     clearInterval(this.timerInterval);
-    clearInterval(this.upperInterval, this.downInterval, this.lineInterval);
+    clearInterval(
+      this.upperInterval,
+      this.downInterval,
+      this.lineInterval,
+      this.gradientInterval
+    );
     clearTimeout(this.timerset);
     this.second.textContent = `0${futseconds}`;
     this.milSecond.textContent = futmilliseconds;
@@ -164,6 +186,7 @@ export default class Paint {
     if (this.lastTime) {
       this.lastTime = false;
       clearInterval(this.timerInterval);
+      clearInterval(this.gradientInterval);
       clearInterval(this.lineInterval);
       this.second.textContent = "00";
       this.milSecond.textContent = "00";
@@ -217,6 +240,15 @@ export default class Paint {
       drawing: this.drawing,
       isDraw: this.isDraw,
     });
+  }
+  _getGradient() {
+    this.gradientInterval = setInterval(() => {
+      if (this.index < this.gradient.length) {
+        this.index++;
+      } else {
+        this.index = 0;
+      }
+    }, 300);
   }
   _getRundNum(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
