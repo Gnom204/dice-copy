@@ -10,6 +10,10 @@ export default class Paint {
     this.times = [500, 1000, 1500, 2000, 2500, 3000];
     this.lineWid;
     this.lineInterval;
+    this.downInterval;
+    this.upperInterval;
+    this.previousTouch;
+    this.gradient = ["#FAF001", "#E7DE0F", "#F01515", "#F07115"];
   }
   _createPaint() {
     let width = window.innerWidth;
@@ -72,15 +76,24 @@ export default class Paint {
         this.x =
           e.touches[0].pageX -
           this.canvas.parentNode.parentNode.offsetLeft -
-          30;
+          40;
         this.y =
-          e.touches[0].pageY - this.canvas.parentNode.parentNode.offsetTop - 80;
+          e.touches[0].pageY -
+          this.canvas.parentNode.parentNode.offsetTop -
+          105;
       } else {
         this.x = e.pageX - this.canvas.parentNode.parentNode.offsetLeft;
         this.y = e.pageY - this.canvas.parentNode.parentNode.offsetTop - 98;
       }
+      this._setLineWidth(e);
       console.log({ x: e.movementX, y: e.movementY });
       this.isDraw = true;
+      /**
+       * Когда-нибудь я научусь документировать код, а пока импровизация
+       * Настройка кисти
+       */
+      this.ctx.lineCap = "round";
+      this.ctx.strokeStyle = "#F07115";
       this.ctx.lineTo(this.x, this.y);
       this.ctx.stroke();
       this.ctx.beginPath();
@@ -89,7 +102,6 @@ export default class Paint {
     }
   }
   _startDrawing(e) {
-    this._setLineWidth();
     if (this.isMobile) {
       this.x =
         e.touches[0].clientX - this.canvas.parentNode.parentNode.offsetLeft;
@@ -99,7 +111,10 @@ export default class Paint {
       this.x = e.clientX - this.canvas.parentNode.parentNode.offsetLeft;
       this.y = e.clientY - this.canvas.parentNode.parentNode.offsetTop;
     }
-
+    if (this.lastTime) {
+      this.lineWid = 1;
+      this.index = 0;
+    }
     if (!this.isDraw) {
       this._countdownTimer(this.time);
       this.timerset = setTimeout(() => {
@@ -118,6 +133,7 @@ export default class Paint {
       let remainingTime = endTime - Date.now();
       if (remainingTime <= 0) {
         clearInterval(this.timerInterval);
+        clearInterval(this.lineInterval);
         this.second.textContent = "00";
         this.milSecond.textContent = "00";
         this.drawing = false;
@@ -144,7 +160,9 @@ export default class Paint {
     this.isDraw = false;
     this.drawing = false;
 
+    clearInterval(this.upperInterval, this.downInterval);
     clearInterval(this.timerInterval);
+    clearInterval(this.lineInterval);
     clearTimeout(this.timerset);
     this.second.textContent = `0${futseconds}`;
     this.milSecond.textContent = futmilliseconds;
@@ -160,44 +178,52 @@ export default class Paint {
     if (this.lastTime) {
       this.lastTime = false;
       clearInterval(this.timerInterval);
+      clearInterval(this.lineInterval);
       this.second.textContent = "00";
       this.milSecond.textContent = "00";
       this.drawing = false;
       this.ctx.fillStyle = "#d461618b";
       this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
     }
-    clearInterval(this.lineInterval);
     this.ctx.beginPath();
     this._getInfo();
   }
-  _setLineWidth() {
-    this.lineWid = this._getRundNum(1, 5);
-    this.lineInterval = setInterval(() => {
-      let casheValue = this.lineWid;
-      let newValue = this._getRundNum(1, 5);
-      console.log({ casheValue, newValue, line: this.lineWid });
-      let upperInterval, downInterval;
-      if (casheValue > newValue) {
-        upperInterval = setInterval(() => {
-          console.log("cashe больше линии");
-          this.lineWid -= 0.1;
-          console.log(this.lineWid, casheValue);
-          if (this.lineWid <= newValue) {
-            clearInterval(upperInterval);
-          }
-        }, 1);
+  _setLineWidth(e) {
+    if (this.isMobile) {
+      let touch = e.touches[0];
+      if (this.previousTouch) {
+        e.movementX = touch.pageX - this.previousTouch.pageX;
+        e.movementY = touch.pageY - this.previousTouch.pageY;
       }
-      if (casheValue < newValue) {
-        downInterval = setInterval(() => {
-          console.log("cashe меньше линии");
-          this.lineWid += 0.1;
-          console.log(this.lineWid, casheValue);
-          if (this.lineWid >= newValue) {
-            clearInterval(downInterval);
-          }
-        }, 1);
+      this.previousTouch = touch;
+    }
+    let { movementX, movementY } = e;
+
+    if (movementX > 8 || movementY > 8 || movementX < -8 || movementY < -8) {
+      // if (this.lineWid < 5) {
+      //   this.lineWid += 0.5;
+      // }
+      // console.log("cashe больше линии");
+      if (this.lineWid < 3.5) {
+        this.lineWid += 0.3;
       }
-    }, 300);
+      // this.upperInterval = setInterval(() => {
+      //   if (this.lineWid < 5) {
+      //     this.lineWid += 1;
+      //   } else if (this.lineWid > 1) {
+      //     this.lineWid -= 1;
+      //   } else {
+      //     clearInterval();
+      //   }
+      // }, 200);
+    } else {
+      if (this.lineWid > 1) {
+        this.lineWid -= 0.3;
+      }
+      // if (this.lineWid > 1) {
+      //   this.lineWid -= 0.5;
+      // }
+    }
   }
   _getInfo() {
     console.log({
@@ -205,6 +231,15 @@ export default class Paint {
       drawing: this.drawing,
       isDraw: this.isDraw,
     });
+  }
+  _getGradient() {
+    this.gradientInterval = setInterval(() => {
+      if (this.index < this.gradient.length) {
+        this.index++;
+      } else {
+        this.index = 0;
+      }
+    }, 300);
   }
   _getRundNum(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
