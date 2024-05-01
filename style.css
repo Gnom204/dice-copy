@@ -162,10 +162,9 @@ img {
 }
 
 .dice-red {
-  color: red;
   width: 95px;
   height: 95px;
-  background: url(./source/angrys.svg) no-repeat center center;
+  background: url(./source/angryEvents.png) no-repeat center center;
   background-size: contain;
   background-position: 3px;
 }
@@ -173,7 +172,7 @@ img {
 .dice-green {
   width: 95px;
   height: 95px;
-  background: url(./source/PurpleDice.svg) no-repeat center center;
+  background: url(./source/PurpleDice.png) no-repeat center center;
   background-size: contain;
 }
 
