@@ -393,7 +393,7 @@ canvas {
   .timer {
     font-size: 56px;
   }
-  #D5 > .dice-result {
-    /* margin: 30px 8px 0 0 !important; */
+  #D6 > .dice-result {
+    bottom: 21px;
   }
 }
