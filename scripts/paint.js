@@ -92,8 +92,11 @@ export default class Paint {
        * Когда-нибудь я научусь документировать код, а пока импровизация
        * Настройка кисти
        */
+      const gradient = this.ctx.createLinearGradient(150, 125, 175, 150);
+      gradient.addColorStop(0, "#F07115");
+      gradient.addColorStop(1, "red");
       this.ctx.lineCap = "round";
-      this.ctx.strokeStyle = "#F07115";
+      this.ctx.strokeStyle = gradient;
       this.ctx.lineTo(this.x, this.y);
       this.ctx.stroke();
       this.ctx.beginPath();
