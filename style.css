@@ -321,10 +321,11 @@ canvas {
 
 .style-container {
   position: relative;
-  top: -10px;
+  top: -20px;
   display: flex;
   justify-content: center;
   margin: 5px 0;
+  z-index: 10;
 }
 
 .reset {
@@ -336,6 +337,16 @@ canvas {
   background-color: transparent;
   cursor: pointer;
   user-select: none;
+}
+
+.reset-wall {
+  position: relative;
+  bottom: 2px;
+  left: 90px;
+  width: 120px;
+  height: 2px;
+  background-color: #ffffff;
+  z-index: 1;
 }
 
 #D30 > .dice-result {
