@@ -62,7 +62,7 @@ let diceD30Arr = fillArr(30);
 
 let diceCount = [
   {
-    src: "./source/papper.png",
+    src: "./source/papper.svg",
     name: "Papper",
   },
   // {

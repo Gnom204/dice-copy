@@ -53,6 +53,8 @@ class Dice {
       this.getResult();
       setTimeout(() => {
         container.classList.remove("dice-active");
+        result.classList.remove("dice-red");
+        result.classList.remove("dice-green");
         result.textContent = resValue;
         console.log(this.cooldown);
         setTimeout(() => {
