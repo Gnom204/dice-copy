@@ -95,6 +95,7 @@ img {
 
 .dice-result {
   position: absolute;
+  bottom: 22px;
   font-size: 96px;
   color: black;
   -webkit-text-stroke: 2px white;
@@ -129,7 +130,7 @@ img {
 .choose-dice {
   z-index: 100;
   display: flex;
-  width: 20%;
+  width: 40%;
   height: 20%;
 }
 .choice-container {
@@ -171,7 +172,7 @@ img {
   height: 95px;
   background: url(./source/angryEvents.png) no-repeat center center;
   background-size: contain;
-  background-position: 3px;
+  bottom: 45px;
 }
 
 .dice-green {
@@ -367,6 +368,9 @@ canvas {
     width: 50%;
     height: 50%;
   }
+  .dice-red {
+    width: 75px;
+  }
   .choise-container {
     gap: 70px;
     row-gap: 35px;
@@ -380,6 +384,10 @@ canvas {
   .dice-container {
     margin-top: 50px;
     width: 50%;
+  }
+  .dice-result {
+    font-size: 72px;
+    bottom: 16px;
   }
 }
 
@@ -409,6 +417,10 @@ canvas {
     font-size: 56px;
   }
   #D6 > .dice-result {
-    bottom: 22px;
+    bottom: 15px;
+  }
+  .dice-red {
+    width: 65px;
+    right: 97px;
   }
 }
