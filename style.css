@@ -319,6 +319,10 @@ canvas {
   #D6 > .dice-result {
     bottom: 15px;
   }
+  #D30 > .dice-result {
+    bottom: 42px;
+    font-size: 48px;
+  }
   .dice-red {
     width: 65px;
     right: 97px;

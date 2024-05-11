@@ -67,10 +67,19 @@
   height: 95px;
   background: url(../source/PurpleDice.png) no-repeat center center;
   background-size: contain;
+  bottom: 40px;
 }
 
 #D30 > .dice-result {
   bottom: 60px;
   font-family: "bestFont";
-  font-size: 56px !important;
+  font-size: 56px;
+}
+
+@media screen and (max-width: 600px) {
+  .dice-green {
+    width: 65px;
+    height: 65px;
+    bottom: 30px !important;
+  }
 }
