@@ -1,3 +1,5 @@
+@import url(./style/dice.css);
+@import url(./style/choice.css);
 @font-face {
   font-family: "Zing";
   src: url(./source/ofont.ru_Zing\ Rust.ttf);
@@ -5,7 +7,7 @@
 @font-face {
   font-family: "bestFont";
 
-  src: url(./source/Block-font.otf);
+  src: url(./source/ofont.ru_Hlobus.ttf);
 }
 body {
   background-image: url(./source/backgroundmob.PNG);
@@ -16,12 +18,6 @@ body {
   width: 70%;
   margin: auto;
   text-align: center;
-}
-
-.dice {
-  text-align: center;
-  display: inline-block;
-  margin: 10px;
 }
 
 p {
@@ -71,40 +67,6 @@ img {
   justify-content: center;
 }
 
-.dices {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  margin: auto;
-}
-
-.dice-container {
-  margin-top: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 70%;
-}
-
-.dice-img {
-  position: relative;
-  object-fit: contain;
-  cursor: pointer;
-  width: 100%;
-}
-
-.dice-result {
-  position: absolute;
-  bottom: 22px;
-  font-size: 96px;
-  color: black;
-  -webkit-text-stroke: 2px white;
-}
-
-.blocked-dice {
-  opacity: 0.5;
-}
-
 @keyframes rotation {
   0% {
     transform: rotate(0deg);
@@ -117,41 +79,6 @@ img {
 .odd-number {
   color: red;
   -webkit-text-stroke: 2px black;
-}
-
-.dice-active {
-  animation: rotation 40ms infinite linear;
-  -webkit-animation: rotation 40ms infinite linear;
-  -moz-animation: rotation 40ms infinite linear;
-  -ms-animation: rotation 40ms infinite linear;
-  -o-animation: rotation 40ms infinite linear;
-}
-
-.choose-dice {
-  z-index: 100;
-  display: flex;
-  width: 40%;
-  height: 20%;
-}
-.choice-container {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-}
-
-.choice-container:nth-child(2) {
-  margin-left: 20%;
-  margin-right: 5%;
-}
-
-.choice-img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  cursor: pointer;
 }
 
 .game-alert {
@@ -167,21 +94,6 @@ img {
   color: red;
 }
 
-.dice-red {
-  width: 95px;
-  height: 95px;
-  background: url(./source/angryEvents.png) no-repeat center center;
-  background-size: contain;
-  bottom: 45px;
-}
-
-.dice-green {
-  width: 95px;
-  height: 95px;
-  background: url(./source/PurpleDice.png) no-repeat center center;
-  background-size: contain;
-}
-
 .choise-container {
   position: absolute;
   left: -60px;
@@ -191,10 +103,6 @@ img {
   width: 100%;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
-}
-
-.choice-name {
-  margin: 5px 0;
 }
 
 .mechanic {
@@ -353,14 +261,6 @@ canvas {
   height: 2px;
   background-color: #ffffff;
   z-index: 1;
-}
-
-#D30 > .dice-result {
-  font-size: 56px !important;
-}
-#D5 > .dice-result {
-  /* margin: 40px 8px 0 0 !important; */
-  font-size: 56px !important;
 }
 
 @media screen and (max-width: 990px) {

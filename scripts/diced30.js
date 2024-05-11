@@ -16,9 +16,9 @@ export class DiceD30 extends Dice {
     super(diceSrc, place, template, diceValue, name);
     this.gameAlert = gameAlert;
     this.needImg = needImg;
-    this.isRoll = true;
     this.diceRender = diceRender;
-    this.canClick = true;
+    this.canClick = false;
+    this.isRoll = false;
     this.pasivedice1 = pasivedice1;
     this.pasivedice2 = pasivedice2;
   }
@@ -28,25 +28,26 @@ export class DiceD30 extends Dice {
    * @param  container самый главный контейнер, в который мы кидаем кубик/холст
    */
   _rollDice(result, container) {
-    this.canClick = false;
-    console.log(result, container);
-    if (this.isRoll) {
+    if (this.canClick) {
       this.getResult();
-
       super._rollDice(result, container);
-      this.isRoll = false;
-    } else {
+      this.canClick = false;
+      setTimeout(() => {
+        this.isRoll = true;
+      }, 1500);
+    }
+    if (this.isRoll) {
       this.place.firstElementChild.remove();
       this.diceRender();
       this.gameAlert.textContent = "";
       this.needImg.classList.add("blocked-dice");
-      this.isRoll = true;
+      this.isRoll = false;
       this.pasivedice1.classList.remove("blocked-dice");
       this.pasivedice2.classList.remove("blocked-dice");
     }
-    setTimeout(() => {
-      this.canClick = true;
-    }, 1000);
+  }
+  setClick() {
+    this.canClick = true;
   }
   getResult() {
     super.getResult();

@@ -63,7 +63,7 @@ let diceD30Arr = fillArr(30);
 let diceCount = [
   {
     src: "./source/papper.svg",
-    name: "Papper",
+    name: "silement",
   },
   // {
   //   src: "./source/diced5.png",
@@ -145,19 +145,22 @@ function postDice(e) {
     gameAlert.textContent = "";
     place.firstElementChild.remove();
     diceD5.renderDice();
-  } else if (id === "Papper" && place.firstElementChild.id === "D5") {
+  } else if (id === "silement" && place.firstElementChild.id === "D5") {
     gameAlert.textContent = "";
     place.firstElementChild.remove();
     place.firstElementChild.remove();
     needImg.classList.add("blocked-dice");
     paint.again();
     paint.renderPaint();
-  } else if (id === "Papper" && place.firstElementChild.id != "Papper") {
+  } else if (id === "silement" && place.firstElementChild.id != "silement") {
     place.firstElementChild.remove();
     gameAlert.textContent = "";
 
     paint.renderPaint();
   }
+}
+function d30Can() {
+  diceD30.canClick();
 }
 
 // function heal() {
@@ -197,7 +200,8 @@ const diceD6 = new DiceD6(
   gameAlert,
   () => diceD30.renderDice(),
   pasiveDice1,
-  pasiveDice2
+  pasiveDice2,
+  () => diceD30.setClick()
 );
 const diceD30 = new DiceD30(
   diceD30Url,
