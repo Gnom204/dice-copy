@@ -12,6 +12,7 @@ export default class Paint {
     this.lineInterval;
     this.downInterval;
     this.upperInterval;
+    this.averageLine = [];
     this.previousTouch;
     this.gradient = ["#FAF001", "#E7DE0F", "#F01515", "#F07115"];
   }
@@ -24,6 +25,8 @@ export default class Paint {
     }
     this.clone = this.template.content.cloneNode(true);
     this.canvas = document.createElement("canvas");
+    this.averageText = document.createElement("p");
+    this.averageText.classList.add("average-text");
     this.canvas.width = 300;
     this.canvas.height = 250;
     this.container = this.clone.querySelector(".paint-container");
@@ -61,6 +64,7 @@ export default class Paint {
   }
   renderPaint() {
     this.paint = this._createPaint();
+    this.timer.insertAdjacentElement("afterend", this.averageText);
     this.timer.insertAdjacentElement("afterend", this.canvas);
     this.place.appendChild(this.paint);
   }
@@ -139,6 +143,7 @@ export default class Paint {
         clearInterval(this.lineInterval);
         this.second.textContent = "00";
         this.milSecond.textContent = "00";
+        this.averageText.textContent = this._getAverageValue(this.averageLine);
         this.drawing = false;
       } else {
         let seconds = Math.floor(remainingTime / 1000);
@@ -162,6 +167,7 @@ export default class Paint {
     this.lastTime = true;
     this.isDraw = false;
     this.drawing = false;
+    this.averageText.textContent = 0;
 
     clearInterval(this.upperInterval, this.downInterval);
     clearInterval(this.timerInterval);
@@ -186,6 +192,7 @@ export default class Paint {
       this.milSecond.textContent = "00";
       this.drawing = false;
       this.ctx.fillStyle = "#d461618b";
+      this.averageText.textContent = this._getAverageValue(this.averageLine);
       this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
     }
     this.ctx.beginPath();
@@ -203,29 +210,16 @@ export default class Paint {
     let { movementX, movementY } = e;
 
     if (movementX > 8 || movementY > 8 || movementX < -8 || movementY < -8) {
-      // if (this.lineWid < 5) {
-      //   this.lineWid += 0.5;
-      // }
-      // console.log("cashe больше линии");
+      this.averageLine.push(this.lineWid);
       if (this.lineWid < 3.5) {
         this.lineWid += 0.3;
       }
-      // this.upperInterval = setInterval(() => {
-      //   if (this.lineWid < 5) {
-      //     this.lineWid += 1;
-      //   } else if (this.lineWid > 1) {
-      //     this.lineWid -= 1;
-      //   } else {
-      //     clearInterval();
-      //   }
-      // }, 200);
     } else {
+      this.averageLine.push(this.lineWid);
+
       if (this.lineWid > 1) {
         this.lineWid -= 0.3;
       }
-      // if (this.lineWid > 1) {
-      //   this.lineWid -= 0.5;
-      // }
     }
   }
   _getInfo() {
@@ -246,5 +240,14 @@ export default class Paint {
   }
   _getRundNum(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+  _getAverageValue(arr) {
+    let sum = 0;
+    let countOfElements = arr.length;
+    for (let i = 0; i < countOfElements; i++) {
+      sum += arr[i];
+    }
+    console.log(sum, countOfElements);
+    return (sum / countOfElements).toFixed(2);
   }
 }

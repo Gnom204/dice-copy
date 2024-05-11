@@ -233,6 +233,11 @@ canvas {
   flex-direction: column;
 }
 
+.average-text {
+  position: absolute;
+  top: 0px;
+}
+
 .style-container {
   position: relative;
   top: -20px;
