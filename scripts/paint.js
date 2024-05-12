@@ -88,11 +88,13 @@ export default class Paint {
           105;
         this.sparkles.style.top = this.y + 40 + "px";
         this.sparkles.style.left = this.x - 25 + "px";
+        this.sparkles.style.display = "block";
       } else {
         this.x = e.pageX - this.canvas.parentNode.parentNode.offsetLeft;
         this.y = e.pageY - this.canvas.parentNode.parentNode.offsetTop - 98;
         this.sparkles.style.top = this.y + 67 + "px";
         this.sparkles.style.left = this.x - 35 + "px";
+        this.sparkles.style.display = "block";
       }
       this._setLineWidth(e);
       console.log({ x: e.movementX, y: e.movementY });
@@ -102,8 +104,9 @@ export default class Paint {
        * Когда-нибудь я научусь документировать код, а пока импровизация
        * Настройка кисти
        */
-      const gradient = this.ctx.createLinearGradient(150, 125, 175, 150);
-      gradient.addColorStop(0, "#F07115");
+      const gradient = this.ctx.createLinearGradient(80, 125, 175, 150);
+      gradient.addColorStop(0, "red");
+      gradient.addColorStop(0.9, "#F07115");
       gradient.addColorStop(1, "red");
       this.ctx.lineCap = "round";
       this.ctx.strokeStyle = gradient;
@@ -156,6 +159,7 @@ export default class Paint {
         this.averageText.textContent = this._getAverageValue(this.averageLine);
         this.averageLine.length = 0;
         this.drawing = false;
+        this.sparkles.style.display = "none";
       } else {
         let seconds = Math.floor(remainingTime / 1000);
         let milliseconds = remainingTime % 1000;
@@ -202,6 +206,7 @@ export default class Paint {
       this.second.textContent = "00";
       this.milSecond.textContent = "00";
       this.drawing = false;
+      this.sparkles.style.display = "none";
       this.ctx.fillStyle = "#d461618b";
       this.averageText.textContent = this._getAverageValue(this.averageLine);
       this.averageLine.length = 0;
