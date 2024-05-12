@@ -36,6 +36,7 @@ export default class Paint {
     this.second = this.clone.querySelector(".second");
     this.milSecond = this.clone.querySelector(".milsecond");
     this.reset = this.clone.querySelector(".reset");
+    this.sparkles = this.clone.querySelector(".sparkles");
 
     this._getRandomTime(this.times);
     let endTime = Date.now() + this.time;
@@ -85,13 +86,18 @@ export default class Paint {
           e.touches[0].pageY -
           this.canvas.parentNode.parentNode.offsetTop -
           105;
+        this.sparkles.style.top = this.y + 40 + "px";
+        this.sparkles.style.left = this.x - 25 + "px";
       } else {
         this.x = e.pageX - this.canvas.parentNode.parentNode.offsetLeft;
         this.y = e.pageY - this.canvas.parentNode.parentNode.offsetTop - 98;
+        this.sparkles.style.top = this.y + 67 + "px";
+        this.sparkles.style.left = this.x - 35 + "px";
       }
       this._setLineWidth(e);
       console.log({ x: e.movementX, y: e.movementY });
       this.isDraw = true;
+
       /**
        * Когда-нибудь я научусь документировать код, а пока импровизация
        * Настройка кисти
@@ -114,9 +120,13 @@ export default class Paint {
         e.touches[0].clientX - this.canvas.parentNode.parentNode.offsetLeft;
       this.y =
         e.touches[0].clientY - this.canvas.parentNode.parentNode.offsetTop;
+      this.sparkles.style.top = this.y - 40 + "px";
+      this.sparkles.style.left = this.x - 60 + "px";
     } else {
       this.x = e.clientX - this.canvas.parentNode.parentNode.offsetLeft;
       this.y = e.clientY - this.canvas.parentNode.parentNode.offsetTop;
+      this.sparkles.style.top = this.y + 67 + "px";
+      this.sparkles.style.left = this.x - 35 + "px";
     }
     if (this.lastTime) {
       this.lineWid = 1;

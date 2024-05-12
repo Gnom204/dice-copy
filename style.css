@@ -268,6 +268,17 @@ canvas {
   z-index: 1;
 }
 
+.sparkles {
+  position: absolute;
+  top: 0;
+  background-image: url(./source/Z9pp.gif);
+  background-size: contain;
+  width: 70px;
+  height: 70px;
+  user-select: none;
+  pointer-events: none;
+}
+
 @media screen and (max-width: 990px) {
   .choose-dice {
     width: 50%;
