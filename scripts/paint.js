@@ -144,6 +144,7 @@ export default class Paint {
         this.second.textContent = "00";
         this.milSecond.textContent = "00";
         this.averageText.textContent = this._getAverageValue(this.averageLine);
+        this.averageLine.length = 0;
         this.drawing = false;
       } else {
         let seconds = Math.floor(remainingTime / 1000);
@@ -193,6 +194,7 @@ export default class Paint {
       this.drawing = false;
       this.ctx.fillStyle = "#d461618b";
       this.averageText.textContent = this._getAverageValue(this.averageLine);
+      this.averageLine.length = 0;
       this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
     }
     this.ctx.beginPath();
