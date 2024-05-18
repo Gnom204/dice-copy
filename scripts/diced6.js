@@ -12,7 +12,8 @@ export class DiceD6 extends Dice {
     renderD30,
     pasivedice1,
     pasivedice2,
-    d30CanClick
+    d30CanClick,
+    sound
   ) {
     super(diceSrc, place, template, diceValue, name);
     this.needImg = needImg;
@@ -21,6 +22,7 @@ export class DiceD6 extends Dice {
     this.pasivedice1 = pasivedice1;
     this.pasivedice2 = pasivedice2;
     this.d30CanClick = d30CanClick;
+    this.sound = sound;
     this.canClick = true;
     this.img = document.createElement("img");
   }
@@ -79,8 +81,7 @@ export class DiceD6 extends Dice {
     }
   }
   _playSoundD6() {
-    var audio = new Audio("../source/D6.mp4");
-    audio.play();
+    this.sound.play();
   }
   getResult() {
     super.getResult();

@@ -11,7 +11,8 @@ export class DiceD30 extends Dice {
     needImg,
     diceRender,
     pasivedice1,
-    pasivedice2
+    pasivedice2,
+    sound
   ) {
     super(diceSrc, place, template, diceValue, name);
     this.gameAlert = gameAlert;
@@ -19,6 +20,7 @@ export class DiceD30 extends Dice {
     this.diceRender = diceRender;
     this.canClick = false;
     this.isRoll = false;
+    this.sound = sound;
     this.pasivedice1 = pasivedice1;
     this.pasivedice2 = pasivedice2;
   }
@@ -64,8 +66,7 @@ export class DiceD30 extends Dice {
     }, 500);
   }
   _playSoundD30() {
-    var audio = new Audio("../source/D30.mp4");
-    audio.play();
+    this.sound.play();
   }
   _getDescription() {
     let res;

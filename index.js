@@ -23,6 +23,9 @@ const gameAlert = document.querySelector(".game-alert");
 const place = document.querySelector(".dices");
 const choisePlace = document.querySelector(".choose-dice");
 
+const d6Sound = document.getElementById("D6Sound");
+const d30Sound = document.getElementById("D30Sound");
+
 let diceD6Arr = ["1", "2", "3", "4", "5", "—"];
 let diceD5Arr = [
   "2",
@@ -201,7 +204,8 @@ const diceD6 = new DiceD6(
   () => diceD30.renderDice(),
   pasiveDice1,
   pasiveDice2,
-  () => diceD30.setClick()
+  () => diceD30.setClick(),
+  d6Sound
 );
 const diceD30 = new DiceD30(
   diceD30Url,
@@ -213,7 +217,8 @@ const diceD30 = new DiceD30(
   needImg,
   () => diceD6.renderDice(),
   pasiveDice1,
-  pasiveDice2
+  pasiveDice2,
+  d30Sound
 );
 const diceD5 = new DiceD5(
   diceD5Url,
