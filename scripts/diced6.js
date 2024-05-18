@@ -79,7 +79,7 @@ export class DiceD6 extends Dice {
     }
   }
   _playSoundD6() {
-    var audio = new Audio("../source/sounds/D6.mp4");
+    var audio = new Audio("../source/D6.mp4");
     audio.play();
   }
   getResult() {

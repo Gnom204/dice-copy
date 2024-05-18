@@ -64,7 +64,7 @@ export class DiceD30 extends Dice {
     }, 500);
   }
   _playSoundD30() {
-    var audio = new Audio("../source/sounds/D30.mp4");
+    var audio = new Audio("../source/D30.mp4");
     audio.play();
   }
   _getDescription() {
