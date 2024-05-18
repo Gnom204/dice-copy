@@ -13,6 +13,7 @@ export default class Paint {
     this.downInterval;
     this.upperInterval;
     this.averageLine = [];
+    this.stop = false;
     this.previousTouch;
     this.gradient = ["#FAF001", "#E7DE0F", "#F01515", "#F07115"];
   }
@@ -135,18 +136,23 @@ export default class Paint {
       this.sparkles.style.top = this.y + 67 + "px";
       this.sparkles.style.left = this.x - 35 + "px";
     }
-    if (this.lastTime) {
-      this.lineWid = 1;
-      this.index = 0;
-    }
-    if (!this.isDraw) {
-      this._countdownTimer(this.time);
-      this.timerset = setTimeout(() => {
-        this.lastTime = false;
-      }, this.time);
-    }
+    if (this.stop) {
+      this._reset();
+      this.stop = false;
+    } else {
+      if (this.lastTime) {
+        this.lineWid = 1;
+        this.index = 0;
+      }
+      if (!this.isDraw) {
+        this._countdownTimer(this.time);
+        this.timerset = setTimeout(() => {
+          this.lastTime = false;
+        }, this.time);
+      }
 
-    this.drawing = true;
+      this.drawing = true;
+    }
   }
 
   _countdownTimer(milliseconds) {
@@ -202,23 +208,26 @@ export default class Paint {
   }
 
   _stopDrawing() {
-    this.drawing = false;
-    if (this.lastTime) {
-      this.lastTime = false;
-      clearInterval(this.timerInterval);
-      clearInterval(this.lineInterval);
-      this.second.textContent = "00";
-      this.milSecond.textContent = "00";
+    if (this.isDraw) {
       this.drawing = false;
-      this.sparkles.style.display = "none";
-      this.ctx.shadowColor = "transparent";
-      this.ctx.fillStyle = "#d461618b";
-      this.averageText.textContent = this._getAverageValue(this.averageLine);
-      this.averageLine.length = 0;
-      this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+      if (this.lastTime) {
+        this.lastTime = false;
+        clearInterval(this.timerInterval);
+        clearInterval(this.lineInterval);
+        this.second.textContent = "00";
+        this.milSecond.textContent = "00";
+        this.drawing = false;
+        this.stop = true;
+        this.sparkles.style.display = "none";
+        this.ctx.shadowColor = "transparent";
+        this.ctx.fillStyle = "#d461618b";
+        this.averageText.textContent = this._getAverageValue(this.averageLine);
+        this.averageLine.length = 0;
+        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+      }
+      this.ctx.beginPath();
+      this._getInfo();
     }
-    this.ctx.beginPath();
-    this._getInfo();
   }
   _setLineWidth(e) {
     if (this.isMobile) {
