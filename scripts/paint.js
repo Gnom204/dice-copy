@@ -180,7 +180,7 @@ export default class Paint {
     }, 1); // Проверяем каждую миллисекунду
   }
   _getRandomTime(items) {
-    this.time = 5000;
+    this.time = 3500;
   }
   _reset() {
     this._getRandomTime(this.times);
