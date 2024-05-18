@@ -36,7 +36,7 @@ export default class Paint {
     this.timer = this.clone.querySelector(".timer");
     this.second = this.clone.querySelector(".second");
     this.milSecond = this.clone.querySelector(".milsecond");
-    this.reset = this.clone.querySelector(".reset");
+    // this.reset = this.clone.querySelector(".reset");
     this.sparkles = this.clone.querySelector(".sparkles");
 
     this._getRandomTime(this.times);
@@ -48,7 +48,7 @@ export default class Paint {
     this.second.textContent = `0${futseconds}`;
     this.milSecond.textContent = futmilliseconds;
 
-    this.reset.addEventListener("click", () => this._reset());
+    // this.reset.addEventListener("click", () => this._reset());
 
     this.canvas.addEventListener("mouseup", (e) => this._stopDrawing(e));
     this.canvas.addEventListener("mousedown", (e) => this._startDrawing(e));
