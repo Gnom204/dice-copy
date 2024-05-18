@@ -28,6 +28,7 @@ export class DiceD6 extends Dice {
   }
   _rollDice(result, container) {
     if (this.canClick) {
+      this.sound.currentTime = 0;
       this.canClick = false;
       this._playSoundD6();
       super._rollDice(result, container);
