@@ -27,7 +27,7 @@ export class DiceD6 extends Dice {
   _rollDice(result, container) {
     if (this.canClick) {
       this.canClick = false;
-      console.log(this.result);
+      this._playSoundD6();
       super._rollDice(result, container);
       this.getResult();
       result.classList.remove("dice-green");
@@ -77,6 +77,10 @@ export class DiceD6 extends Dice {
     } else if (random <= 1) {
       return "4";
     }
+  }
+  _playSoundD6() {
+    var audio = new Audio("../source/sounds/D6.mp4");
+    audio.play();
   }
   getResult() {
     super.getResult();

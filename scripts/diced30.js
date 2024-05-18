@@ -29,6 +29,7 @@ export class DiceD30 extends Dice {
    */
   _rollDice(result, container) {
     if (this.canClick) {
+      this._playSoundD30();
       this.getResult();
       super._rollDice(result, container);
       this.canClick = false;
@@ -61,6 +62,10 @@ export class DiceD30 extends Dice {
       this.gameAlert.insertAdjacentElement("beforeend", description);
       description.textContent = res.description;
     }, 500);
+  }
+  _playSoundD30() {
+    var audio = new Audio("../source/sounds/D30.mp4");
+    audio.play();
   }
   _getDescription() {
     let res;

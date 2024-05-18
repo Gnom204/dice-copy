@@ -233,6 +233,18 @@ canvas {
   flex-direction: column;
 }
 
+.paint-wall {
+  top: 64px;
+  right: -30px;
+  width: 360px;
+  height: 360px;
+  position: absolute;
+  background-repeat: no-repeat;
+  z-index: -5;
+  object-fit: fill;
+  user-select: none;
+}
+
 .average-text {
   position: absolute;
   top: 0px;

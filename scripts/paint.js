@@ -28,7 +28,7 @@ export default class Paint {
     this.averageText = document.createElement("p");
     this.averageText.classList.add("average-text");
     this.canvas.width = 300;
-    this.canvas.height = 250;
+    this.canvas.height = 280;
     this.container = this.clone.querySelector(".paint-container");
     this.ctx = this.canvas.getContext("2d");
 
@@ -86,8 +86,8 @@ export default class Paint {
           e.touches[0].pageY -
           this.canvas.parentNode.parentNode.offsetTop -
           105;
-        this.sparkles.style.top = this.y + 40 + "px";
-        this.sparkles.style.left = this.x - 25 + "px";
+        this.sparkles.style.top = this.y + 32 + "px";
+        this.sparkles.style.left = this.x - 37 + "px";
         this.sparkles.style.display = "block";
       } else {
         this.x = e.pageX - this.canvas.parentNode.parentNode.offsetLeft;
@@ -108,6 +108,10 @@ export default class Paint {
       gradient.addColorStop(0, "red");
       gradient.addColorStop(0.9, "#F07115");
       gradient.addColorStop(1, "red");
+      this.ctx.shadowColor = "red";
+      this.ctx.shadowBlur = 20;
+      this.ctx.shadowOffsetX = 0;
+      this.ctx.shadowOffsetY = 0;
       this.ctx.lineCap = "round";
       this.ctx.strokeStyle = gradient;
       this.ctx.lineTo(this.x, this.y);
@@ -207,6 +211,7 @@ export default class Paint {
       this.milSecond.textContent = "00";
       this.drawing = false;
       this.sparkles.style.display = "none";
+      this.ctx.shadowColor = "transparent";
       this.ctx.fillStyle = "#d461618b";
       this.averageText.textContent = this._getAverageValue(this.averageLine);
       this.averageLine.length = 0;
