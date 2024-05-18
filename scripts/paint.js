@@ -98,7 +98,6 @@ export default class Paint {
         this.sparkles.style.display = "block";
       }
       this._setLineWidth(e);
-      console.log({ x: e.movementX, y: e.movementY });
       this.isDraw = true;
 
       /**
@@ -123,6 +122,8 @@ export default class Paint {
     }
   }
   _startDrawing(e) {
+    console.log(this.stop);
+    this._getInfo();
     if (this.isMobile) {
       this.x =
         e.touches[0].clientX - this.canvas.parentNode.parentNode.offsetLeft;
@@ -280,5 +281,11 @@ export default class Paint {
     }
     console.log(sum, countOfElements);
     return (sum / countOfElements).toFixed(2);
+  }
+  doNotStop() {
+    console.log("сработала");
+    this.isDraw = false;
+    this.lastTime = true;
+    this.stop = false;
   }
 }

@@ -155,12 +155,12 @@ function postDice(e) {
   } else if (id === "silement" && place.firstElementChild.id != "silement") {
     place.firstElementChild.remove();
     gameAlert.textContent = "";
-
     paint.renderPaint();
+    paint.doNotStop();
   }
 }
 function d30Can() {
-  diceD30.canClick();
+  paint.doNotStop();
 }
 
 // function heal() {
