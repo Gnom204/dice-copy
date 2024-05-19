@@ -71,7 +71,6 @@ export default class Paint {
       }
     });
     document.addEventListener("touchmove", (e) => {
-      console.log(e.touches[0].target);
       e.stopPropagation;
       if (this.isDraw && !e.touches[0].target.classList.contains("canvas")) {
         this._stopDrawing(e);
@@ -114,15 +113,23 @@ export default class Paint {
       }
       this._setLineWidth(e);
       this.isDraw = true;
-
+      // let cords = this.canvas.getBoundingClientRect();
+      // console.log({
+      //   left: cords.x,
+      //   right: cords.x + cords.width,
+      //   top: cords.y,
+      //   bottom: cords.y + cords.height,
+      // });
+      if (this.x < 0 || this.x > 280 || this.y < 0) {
+        console.log(this.x, this.y);
+        console.log("стопэ");
+      }
       /**
        * Когда-нибудь я научусь документировать код, а пока импровизация
        * Настройка кисти
        */
       const gradient = this.ctx.createLinearGradient(80, 125, 175, 150);
       gradient.addColorStop(0, "red");
-      gradient.addColorStop(0.9, "#F07115");
-      gradient.addColorStop(1, "red");
       this.ctx.shadowColor = "red";
       this.ctx.shadowBlur = 20;
       this.ctx.shadowOffsetX = 0;
