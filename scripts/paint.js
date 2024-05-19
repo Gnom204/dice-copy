@@ -37,7 +37,7 @@ export default class Paint {
     this.second = this.clone.querySelector(".second");
     this.milSecond = this.clone.querySelector(".milsecond");
     // this.reset = this.clone.querySelector(".reset");
-    this.sparkles = this.clone.querySelector(".sparkles");
+    // this.sparkles = this.clone.querySelector(".sparkles");
 
     this._getRandomTime(this.times);
     let endTime = Date.now() + this.time;
@@ -87,15 +87,15 @@ export default class Paint {
           e.touches[0].pageY -
           this.canvas.parentNode.parentNode.offsetTop -
           105;
-        this.sparkles.style.top = this.y + 32 + "px";
-        this.sparkles.style.left = this.x - 37 + "px";
-        this.sparkles.style.display = "block";
+        // this.sparkles.style.top = this.y + 32 + "px";
+        // this.sparkles.style.left = this.x - 37 + "px";
+        // this.sparkles.style.display = "block";
       } else {
         this.x = e.pageX - this.canvas.parentNode.parentNode.offsetLeft;
         this.y = e.pageY - this.canvas.parentNode.parentNode.offsetTop - 98;
-        this.sparkles.style.top = this.y + 67 + "px";
-        this.sparkles.style.left = this.x - 35 + "px";
-        this.sparkles.style.display = "block";
+        // this.sparkles.style.top = this.y + 67 + "px";
+        // this.sparkles.style.left = this.x - 35 + "px";
+        // this.sparkles.style.display = "block";
       }
       this._setLineWidth(e);
       this.isDraw = true;
@@ -129,13 +129,13 @@ export default class Paint {
         e.touches[0].clientX - this.canvas.parentNode.parentNode.offsetLeft;
       this.y =
         e.touches[0].clientY - this.canvas.parentNode.parentNode.offsetTop;
-      this.sparkles.style.top = this.y - 40 + "px";
-      this.sparkles.style.left = this.x - 60 + "px";
+      // this.sparkles.style.top = this.y - 40 + "px";
+      // this.sparkles.style.left = this.x - 60 + "px";
     } else {
       this.x = e.clientX - this.canvas.parentNode.parentNode.offsetLeft;
       this.y = e.clientY - this.canvas.parentNode.parentNode.offsetTop;
-      this.sparkles.style.top = this.y + 67 + "px";
-      this.sparkles.style.left = this.x - 35 + "px";
+      // this.sparkles.style.top = this.y + 67 + "px";
+      // this.sparkles.style.left = this.x - 35 + "px";
     }
     if (this.stop) {
       this._reset();
@@ -171,7 +171,7 @@ export default class Paint {
         this.averageLine.length = 0;
         this.stop = true;
         this.drawing = false;
-        this.sparkles.style.display = "none";
+        // this.sparkles.style.display = "none";
       } else {
         let seconds = Math.floor(remainingTime / 1000);
         let milliseconds = remainingTime % 1000;
@@ -220,7 +220,7 @@ export default class Paint {
         this.milSecond.textContent = "00";
         this.drawing = false;
         this.stop = true;
-        this.sparkles.style.display = "none";
+        // this.sparkles.style.display = "none";
         this.ctx.shadowColor = "transparent";
         this.ctx.fillStyle = "#d461618b";
         this.averageText.textContent = this._getAverageValue(this.averageLine);
