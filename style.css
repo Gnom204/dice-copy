@@ -321,7 +321,15 @@ canvas {
 
 @media screen and (max-width: 600px) {
   .paint-wall {
-    top: 30px;
+    top: 54px;
+    width: 300px;
+    height: 360px;
+  }
+  .average-text {
+    top: -17px;
+  }
+  canvas {
+    margin: 46px 0 0 0;
   }
   .choose-dice {
     width: 90%;

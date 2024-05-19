@@ -28,8 +28,8 @@ export default class Paint {
     this.canvas = document.createElement("canvas");
     this.averageText = document.createElement("p");
     this.averageText.classList.add("average-text");
-    this.canvas.width = 300;
-    this.canvas.height = 280;
+    this.canvas.width = !this.isMobile ? 300 : 240;
+    this.canvas.height = !this.isMobile ? 280 : 250;
     this.container = this.clone.querySelector(".paint-container");
     this.ctx = this.canvas.getContext("2d");
 
