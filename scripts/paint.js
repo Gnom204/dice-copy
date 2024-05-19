@@ -1,5 +1,5 @@
 export default class Paint {
-  constructor(template, place) {
+  constructor(template, place, body) {
     this.template = template;
     this.place = place;
     this.isMobile = false;
@@ -14,6 +14,7 @@ export default class Paint {
     this.upperInterval;
     this.averageLine = [];
     this.stop = false;
+    this.body = body;
     this.previousTouch;
     this.gradient = ["#FAF001", "#E7DE0F", "#F01515", "#F07115"];
   }
@@ -30,6 +31,7 @@ export default class Paint {
     this.averageText.classList.add("average-text");
     this.canvas.width = !this.isMobile ? 300 : 240;
     this.canvas.height = !this.isMobile ? 280 : 250;
+    this.canvas.classList.add("canvas");
     this.container = this.clone.querySelector(".paint-container");
     this.ctx = this.canvas.getContext("2d");
 
@@ -59,6 +61,19 @@ export default class Paint {
     document.addEventListener("mouseup", (e) => {
       e.stopPropagation;
       if (this.isDraw) {
+        this._stopDrawing(e);
+      }
+    });
+    document.addEventListener("mousemove", (e) => {
+      e.stopPropagation;
+      if (this.isDraw && !e.target.classList.contains("canvas")) {
+        this._stopDrawing(e);
+      }
+    });
+    document.addEventListener("touchmove", (e) => {
+      console.log(e.touches[0].target);
+      e.stopPropagation;
+      if (this.isDraw && !e.touches[0].target.classList.contains("canvas")) {
         this._stopDrawing(e);
       }
     });

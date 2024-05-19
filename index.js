@@ -3,6 +3,8 @@ import { DiceD5 } from "./scripts/diced5.js";
 import { DiceD6 } from "./scripts/diced6.js";
 import Paint from "./scripts/paint.js";
 
+const root = document.querySelector(".root");
+
 const mechanicsTemplate = document.querySelector("#mechanics");
 
 const form = document.querySelector(".form");
@@ -191,7 +193,7 @@ choiseDice();
 const pasiveDice1 = document.querySelector("#D5");
 const pasiveDice2 = document.querySelector("#D6");
 
-const paint = new Paint(paintTemplate, place);
+const paint = new Paint(paintTemplate, place, root);
 
 const diceD6 = new DiceD6(
   diceD6Url,
