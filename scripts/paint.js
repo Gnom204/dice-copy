@@ -120,9 +120,9 @@ export default class Paint {
       //   top: cords.y,
       //   bottom: cords.y + cords.height,
       // });
-      if (this.x < 0 || this.x > 280 || this.y < 0) {
-        console.log(this.x, this.y);
-        console.log("стопэ");
+      console.log(this.x, this.y);
+      if (this.x < 0 || this.x > 235 || this.y < 0 || this.y > 240) {
+        this._stopDrawing();
       }
       /**
        * Когда-нибудь я научусь документировать код, а пока импровизация
