@@ -29,6 +29,8 @@ export default class Paint {
     this.canvas = document.createElement("canvas");
     this.averageText = document.createElement("p");
     this.averageText.classList.add("average-text");
+    this.averageText.textContent = 0;
+
     this.canvas.width = !this.isMobile ? 300 : 240;
     this.canvas.height = !this.isMobile ? 280 : 250;
     this.canvas.classList.add("canvas");
