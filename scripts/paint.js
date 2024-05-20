@@ -123,7 +123,6 @@ export default class Paint {
       //   top: cords.y,
       //   bottom: cords.y + cords.height,
       // });
-      console.log(this.x, this.y);
 
       /**
        * Когда-нибудь я научусь документировать код, а пока импровизация
@@ -303,7 +302,6 @@ export default class Paint {
     for (let i = 0; i < countOfElements; i++) {
       sum += arr[i];
     }
-    console.log(sum, countOfElements);
     return (sum / countOfElements).toFixed(2);
   }
   doNotStop() {
