@@ -101,6 +101,9 @@ export default class Paint {
           e.touches[0].pageY -
           this.canvas.parentNode.parentNode.offsetTop -
           105;
+        if (this.x < 0 || this.x > 235 || this.y < 0 || this.y > 240) {
+          this._stopDrawing();
+        }
         // this.sparkles.style.top = this.y + 32 + "px";
         // this.sparkles.style.left = this.x - 37 + "px";
         // this.sparkles.style.display = "block";
@@ -121,9 +124,7 @@ export default class Paint {
       //   bottom: cords.y + cords.height,
       // });
       console.log(this.x, this.y);
-      if (this.x < 0 || this.x > 235 || this.y < 0 || this.y > 240) {
-        this._stopDrawing();
-      }
+
       /**
        * Когда-нибудь я научусь документировать код, а пока импровизация
        * Настройка кисти
@@ -173,7 +174,7 @@ export default class Paint {
           this.lastTime = false;
         }, this.time);
       }
-
+      this.isDraw = true;
       this.drawing = true;
     }
   }
