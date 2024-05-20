@@ -195,6 +195,7 @@ export default class Paint {
         this.milSecond.textContent = "00";
         this.averageText.textContent = this._getAverageValue(this.averageLine);
         this.averageLine.length = 0;
+        this.wall.src = "./source/red-wall.svg";
         this.stop = true;
         this.drawing = false;
         // this.sparkles.style.display = "none";
