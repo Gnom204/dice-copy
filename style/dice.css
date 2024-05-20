@@ -59,7 +59,8 @@
   height: 95px;
   background: url(../source/angryEvents1.png) no-repeat center center;
   background-size: contain;
-  bottom: 45px;
+  bottom: 44px;
+  right: 84px;
 }
 
 .dice-green {
