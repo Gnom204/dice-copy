@@ -29,8 +29,8 @@ export class DiceD6 extends Dice {
   _rollDice(result, container) {
     if (this.canClick) {
       this.sound.currentTime = 0;
-      this.canClick = false;
       this._playSoundD6();
+      this.canClick = false;
       super._rollDice(result, container);
       this.getResult();
       result.classList.remove("dice-green");
