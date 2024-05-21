@@ -28,6 +28,9 @@ export class DiceD6 extends Dice {
   }
   _rollDice(result, container) {
     if (this.canClick) {
+      var AudioContext = window.AudioContext || window.webkitAudioContext;
+      var audioCtx = new AudioContext();
+      audioCtx.resume();
       this.sound.currentTime = 0;
       this._playSoundD6();
       this.canClick = false;
