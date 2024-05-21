@@ -10,7 +10,7 @@
   src: url(./source/ofont.ru_Hlobus.ttf);
 }
 body {
-  background-image: url(./source/backgroundmob.PNG);
+  background-image: url(./source/backgroundmob.webp);
   /* background-repeat: no-repeat;
   background-size: cover; */
 }
