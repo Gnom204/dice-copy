@@ -31,7 +31,7 @@ export class DiceD30 extends Dice {
    */
   _rollDice(result, container) {
     if (this.canClick) {
-      this._playSoundD30();
+      // this._playSoundD30();
       this.getResult();
       super._rollDice(result, container);
       this.canClick = false;

@@ -28,10 +28,10 @@ export class DiceD6 extends Dice {
   }
   _rollDice(result, container) {
     if (this.canClick) {
-      var AudioContext = window.AudioContext || window.webkitAudioContext;
-      var audioCtx = new AudioContext();
-      this.sound.currentTime = 0;
-      this._playSoundD6();
+      // var AudioContext = window.AudioContext || window.webkitAudioContext;
+      // var audioCtx = new AudioContext();
+      // this.sound.currentTime = 0;
+      // this._playSoundD6();
       this.canClick = false;
       super._rollDice(result, container);
       this.getResult();
