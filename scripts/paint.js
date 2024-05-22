@@ -14,6 +14,7 @@ export default class Paint {
     this.upperInterval;
     this.averageLine = [];
     this.stop = false;
+    this.isIOS = null;
     this.body = body;
     this.previousTouch;
     this.gradient = ["#FAF001", "#E7DE0F", "#F01515", "#F07115"];
@@ -132,12 +133,21 @@ export default class Paint {
        * Настройка кисти
        */
 
-      this.ctx.shadowColor = "red";
-      this.ctx.shadowBlur = 20;
-      this.ctx.shadowOffsetX = 0;
-      this.ctx.shadowOffsetY = 0;
       this.ctx.lineCap = "round";
       this.ctx.strokeStyle = "red";
+      const ua = navigator.userAgent;
+
+      if (
+        /iPad|iPhone|iPod/.test(ua) ||
+        (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)
+      ) {
+        this.ctx.setShadow(0, 0, 20, "red", 0);
+      } else {
+        this.ctx.shadowColor = "red";
+        this.ctx.shadowBlur = 20;
+        this.ctx.shadowOffsetX = 0;
+        this.ctx.shadowOffsetY = 0;
+      }
       this.ctx.lineTo(this.x, this.y);
       this.ctx.stroke();
       this.ctx.beginPath();
