@@ -156,8 +156,6 @@ export default class Paint {
     }
   }
   _startDrawing(e) {
-    console.log("pencil");
-    console.log(this.stop);
     this._getInfo();
     if (this.isMobile) {
       this.x =
