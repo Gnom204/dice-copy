@@ -141,7 +141,7 @@ export default class Paint {
         /iPad|iPhone|iPod/.test(ua) ||
         (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)
       ) {
-        this.ctx.setShadow(10, 10, 20, "red", 0);
+        this.ctx.setShadow(0, 0, 20, "red");
       } else {
         this.ctx.shadowColor = "red";
         this.ctx.shadowBlur = 20;
