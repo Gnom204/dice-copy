@@ -323,6 +323,10 @@ canvas {
     font-size: 72px;
     bottom: 16px;
   }
+  .dice-red {
+    width: 65px;
+    right: 97px;
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -367,9 +371,5 @@ canvas {
   #D30 > .dice-result {
     bottom: 42px;
     font-size: 48px;
-  }
-  .dice-red {
-    width: 65px;
-    right: 97px;
   }
 }
