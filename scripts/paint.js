@@ -21,7 +21,7 @@ export default class Paint {
   }
   _createPaint() {
     let width = window.innerWidth;
-    if (width < 700) {
+    if (width < 900) {
       this.isMobile = true;
     } else {
       this.isMobile = false;
@@ -141,10 +141,10 @@ export default class Paint {
         /iPad|iPhone|iPod/.test(ua) ||
         (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)
       ) {
-        this.ctx.setShadow(0, 0, 20, "red");
+        this.ctx.setShadow(0, 0, 10, "red");
       } else {
         this.ctx.shadowColor = "red";
-        this.ctx.shadowBlur = 20;
+        this.ctx.shadowBlur = 10;
         this.ctx.shadowOffsetX = 0;
         this.ctx.shadowOffsetY = 0;
       }

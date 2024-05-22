@@ -3,6 +3,9 @@ import { DiceD5 } from "./scripts/diced5.js";
 import { DiceD6 } from "./scripts/diced6.js";
 import Paint from "./scripts/paint.js";
 
+screen.orientation.lock();
+// screen.lockOrientation("orientation");
+
 const root = document.querySelector(".root");
 
 const mechanicsTemplate = document.querySelector("#mechanics");
